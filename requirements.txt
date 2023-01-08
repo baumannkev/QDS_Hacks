@@ -1,0 +1,6 @@
+streamlit==1.16.0
+pandas
+scikit-learn
+utm
+numpy
+pydeck
