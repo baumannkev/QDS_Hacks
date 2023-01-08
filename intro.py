@@ -11,6 +11,10 @@ from sklearn.preprocessing import StandardScaler
 import utm
 import numpy as np
 import pydeck as pdk
+from PIL import Image
+
+st.set_page_config(page_title="XECUTERS",
+                   page_icon=Image.open('ai_dump_truck.png'))
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 250)
@@ -44,10 +48,15 @@ st.info("Goal: For a mining operation, find ways to move the same amount of mate
 # dataframe = pd.read_csv('data_group0_out.csv')
 dataframe = load_data()
 
-st.write(dataframe.shape)
+st.subheader("Data Analysis using Teck Resource's file converted to CSV format")
+
+st.caption("Data types")
 st.write(dataframe.dtypes)
-st.write(dataframe.describe())
+st.caption("Simple glipmse of the pre-processed and cleaned data")
 st.write(dataframe.head())
+st.caption("Descriptive statistics of the data")
+st.write(dataframe.describe())
+
 
 truck_test = dataframe.loc[(dataframe['GPSELEVATION'] == 308.763) & (dataframe['TRUCK_ID'] == 32) & (dataframe['FUEL_RATE'] == 196)]
 truck_test_northing = truck_test.values.tolist()[0][2]
@@ -61,7 +70,8 @@ truck_test = dataframe.loc[(dataframe['TRUCK_ID'] == 3)]
 truck_copy = truck_test.set_index(truck_index)
 
 # df_coords = pd.DataFrame()
-st.title("Hauling Status")
+st.title("Map of truck #3's location points using coordinates")
+st.subheader("Hauling Status")
 df_coords = []
 for index, row in truck_copy[:10000].iterrows():
     temp_status = truck_copy.iloc[index]["STATUS"]
@@ -106,7 +116,7 @@ st.pydeck_chart(pdk.Deck(
 
 )
 
-st.title("Empty Status")
+st.subheader("Empty Status")
 df_coords = []
 for index, row in truck_copy[:10000].iterrows():
     temp_status = truck_copy.iloc[index]["STATUS"]
@@ -151,15 +161,6 @@ st.pydeck_chart(pdk.Deck(
 
 )
 
-# Add markers to the map with custom colors and opacities
-# long_lan_df = pd.DataFrame(np[lat, lon], columns=[lat, lon])
-# st.map(long_lan_df)
-
-# st.altair_chart(alt.Chart(dataframe).mark_bar().encode(
-#     x='TRUCK_ID',
-#     y='FUEL_RATE',
-# ))
-
 # Convert the 'GPSNORTHING' and 'GPSEASTING' columns to 'float' values
 dataframe['GPSNORTHING'] = dataframe['GPSNORTHING'].astype(float)
 dataframe['GPSEASTING'] = dataframe['GPSEASTING'].astype(float)
@@ -185,8 +186,6 @@ dataframe.reset_index(drop=True, inplace=True)
 
 # Convert the 'ROAD_TYPE' column to numerical values
 dataframe['ROAD_TYPE'] = dataframe['ROAD_TYPE'].map({'flat': 0, 'gentle uphill': 1, 'steep uphill': 2, 'gentle downhill': 3, 'steep downhill': 4})
-
-# Split the data into training and testing sets
 
 # Split the data into training and test sets
 X = dataframe[["TRUCK_ID", "PAYLOAD", "SHOVEL_ID", "GPSELEVATION"]]
@@ -230,21 +229,17 @@ with st.spinner('Fitting model...'):
     pipeline = get_pipeline()
         # Total time elapsed since the timer started
 
-totalTime = round((time.time() - startTime), 2)
-st.success('Model is ready! Time taken: ' + str(totalTime) + 's')
+    totalTime = round((time.time() - startTime), 2)
+    st.success('Model is ready! Time taken: ' + str(totalTime) + 's')
 
 # Mean Absolute error of model
 predictions = pipeline.predict(X_test) 
 mae = mean_absolute_error(y_test, predictions)
 
-# Calculate the mean squared error
-mse = mean_squared_error(y_test, predictions)
-
 # Calculate the r-squared value for the linear regression model
 rsv = r2_score(y_test, predictions)
-# st.info("Mean absolute error of model: " + mae)
+st.info("The mean absolute error (MAE) takes the absolute difference between the actual and forecasted values and finds the average.")
 st.metric(label='Mean absolute error of model',value="{}".format(mae))
-st.metric(label='Mean squared error of model',value="{}".format(mse))
 # st.info("Mean squared error of model: " + mse)
 
 st.caption("""
@@ -254,7 +249,7 @@ st.caption("""
 st.header('Prediction')
 
 st.info("""
-    The predicted outputs shows 
+    The predicted outputs shows the fuel rate prediction based on the inputs given on the left column.
 """)
 
 col1, col2 = st.columns(2)
@@ -280,9 +275,8 @@ for index, column_name in enumerate(input_column_names):
                 mean_value = dataframe[column_name].mean()
                 prediction_inputs.append(col1.slider(column_name, min_value=int(min_value),
                                                      max_value=int(max_value), value=int(mean_value)))
-                # prediction_inputs.append(col1.slider(column_name))
 
-col2.subheader('Predicted Outputs')
+col2.subheader('Predicted Output')
 
 predictions = pipeline.predict([prediction_inputs])
 "data", st.session_state
