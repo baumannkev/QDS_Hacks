@@ -1,0 +1,277 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+section {
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+#title {
+  background-color: #ff4c68;
+  color: #fff;
+}
+
+.navbar-container {
+  text-align: left;
+  padding: 3% 15% 7%;
+}
+
+/* Headings */
+
+.big-heading {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+/* Download Button */
+
+.download-button {
+  margin: 5% 5% 5% 0;
+}
+
+/* Title Image */
+
+.title-image {
+  width: 21%;
+  transform: rotate(25deg);
+  position: absolute;
+  right: 25%;
+}
+
+/* Banner */
+#banner {
+  padding: 14% 10%;
+  background-color: #272833;
+}
+.content {
+  display: flex;
+  justify-content: center;
+}
+.content header h2 {
+  font-size: 9em;
+  color: #ffffff;
+}
+.content header p {
+  font-size: 2em;
+}
+#banner .content .image {
+  border-radius: 20%;
+  display: inline-block;
+  height: 25em;
+  width: 25em;
+  margin-left: 3em;
+}
+.content header h2,
+.content header p,
+#banner .content .image {
+  animation: appear 5s;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 980px) {
+  #banner .content .image {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 736px) {
+  #banner .content .image {
+    height: 9em;
+    width: 9em;
+  }
+}
+
+/* Intro */
+.members {
+  background-color: blue;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/* Feature Section */
+.skills h3 {
+  margin-bottom: 15px;
+}
+
+.skills table {
+  display: inline-block;
+}
+
+.skill-row-odd table {
+  direction: rtl;
+}
+
+.skill-row-odd td {
+  padding-left: 60px;
+}
+
+.skill-row-even td {
+  padding-right: 60px;
+}
+
+.skill-row-odd {
+  width: 70%;
+  margin: 100px auto;
+  text-align: right;
+}
+
+.skill-row-even {
+  width: 70%;
+  margin: 500px auto;
+  text-align: left;
+}
+
+.odd-img-left {
+  width: 50%;
+  float: left;
+  margin-right: 30px;
+}
+
+.even-img-right {
+  width: 50%;
+  float: right;
+  margin-left: 30px;
+}
+
+#features {
+  background-color: #fff;
+  position: relative;
+  padding: 17% 10%;
+}
+
+.feature-box {
+  padding: 5%;
+}
+
+.icon {
+  color: #ef8172;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #ff4c68;
+}
+
+/* Testimonial Section */
+
+#testimonials {
+  background-color: #272833;
+  color: #ffffff;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.carousel-item {
+  padding: 17% 15%;
+}
+
+/* Press Section */
+
+#press {
+  background-color: #ef8172;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Card Section */
+
+#card {
+  padding: 100px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-column {
+  padding: 3% 2%;
+}
+
+/* Call to Action Section */
+
+#cta {
+  background-color: #ff4c68;
+  color: #ffffff;
+  padding: 17% 15%;
+}
+
+.cta-h3 {
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+/* Footer Section */
+
+#footer {
+  padding: 60px 0;
+}
+
+.footer-btn {
+  margin: 0 12px 20px;
+}
+
+@media screen and (max-width: 1080px) {
+  #title {
+    text-align: center;
+  }
+
+  .title-image {
+    position: static;
+    transform: rotate(0);
+    width: 67%;
+  }
+}
