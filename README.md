@@ -10,5 +10,5 @@ Packages: Json, Matplotlib, NumPy, Palettable, Pandas, Scipy, Seaborn, Sklearn, 
 
 Brainstorming via FigJam: https://www.figma.com/file/UBbkcjeLreLPmUgbDaJx9F/QDS_2023?node-id=0%3A1&t=boeXXTJaBAcc9bnJ-1
 
-StreamLit hosting: https://baumannkev-qds-hacks-intro-ztn40p.streamlit.app/
+StreamLit hosting: https://xecuters.streamlit.app/
 
